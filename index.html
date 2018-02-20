@@ -37,6 +37,11 @@
   </tbody>
 </table>
 
+<div style="text-align: center;margin-left: 20%;" id="profilePic">
+<img id="my_image" src="first.jpg"/>
+
+</div>
+
 
 <!-- jQuery library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -49,12 +54,13 @@ $('#submit').click( function(){
               var settings = {
               "async": true,
               "crossDomain": true,
-              "url":$('input:text').val(),
+              "url":"https://api.github.com/users/"+$('input:text').val(),
               "method": "GET",
               "headers": {
                 "content-type": "application/x-www-form-urlencoded"
               },
-              "data": {}
+              "data": {},
+
             }
 
           $.ajax(settings).done(function (response) {
@@ -68,7 +74,8 @@ $('#submit').click( function(){
             $('#url').html(response.url);
             $('#created').html(response.created_at);
             $('#cmpy').html(response.company);
-            
+            //$('#profilePic').html(response.avatar_url);
+            $("#my_image").attr("src",response.avatar_url);
 
             });
 
@@ -174,5 +181,6 @@ data.company
 
 </body>
 </html>
+
 
 
